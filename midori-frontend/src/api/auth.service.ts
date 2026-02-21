@@ -14,20 +14,20 @@ interface RegisterData {
 }
 
 export async function login(data: LoginData) {
-  return axios.post("/auth/login", data);
+  return axios.post("/login", data);
 }
 
 export async function register(data: RegisterData) {
-  return axios.post("/auth/register", data);
+  return axios.post("/register", data);
 }
 
 export async function fetchUser() {
-  return axios.get("/auth/user");
+  return axios.get("/user");
 }
 
 export async function logout() {
   try {
-    await axios.post("/auth/logout");
+    await axios.post("/logout");
   } catch {}
   localStorage.removeItem("access_token");
   localStorage.removeItem("user");

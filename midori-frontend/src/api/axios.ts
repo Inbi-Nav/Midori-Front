@@ -21,10 +21,8 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      logout();
-      window.location.href = "/auth/login";
-    }
+    console.log("ERROR STATUS:", error.response?.status);
+    console.log("ERROR DATA:", error.response?.data);
     return Promise.reject(error);
   }
 );
