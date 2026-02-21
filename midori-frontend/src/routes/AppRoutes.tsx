@@ -9,6 +9,7 @@ import { AdminDashboard } from "../pages/admin/AdminDashboard";
 import { RoleRoute } from "./RoleRoutes";
 import { ProviderDashboard } from "../pages/provider/ProviderDashboard";
 import { CartPage } from "../pages/cart/CartPage";
+import { OrdersPage } from "../pages/orders/OrdersPage";
 
 export const AppRoutes = () => {
   const { isAuthenticated, user } = useAuthStore();
@@ -41,7 +42,16 @@ export const AppRoutes = () => {
       <AdminDashboard />
       </RoleRoute>
     ),
-   },
+   }, 
+
+  {
+    path: "/orders",
+    element: (
+      <RoleRoute allowedRoles={["client", "provider"]}>
+        <OrdersPage />
+      </RoleRoute>
+    ),
+  },
 
   {
     path: "/cart",

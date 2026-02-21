@@ -33,8 +33,6 @@ export const ClientLoginForm = () => {
   try {
     const response = await login(data);
 
-    // ⚠️ Verifica cómo lo devuelve tu backend:
-    // puede ser response.data.token o response.data.access_token
     const token = response.data.token || response.data.access_token;
     const user = response.data.user;
 

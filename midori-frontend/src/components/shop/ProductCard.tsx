@@ -7,7 +7,7 @@ interface Props {
 
 
 export const ProductCard = ({ product }: Props) => {
-  const { addToCart } = useCartStore();  // ✅ ahora sí
+  const { addToCart } = useCartStore();  
 
   return (
     <div className="product-card">
