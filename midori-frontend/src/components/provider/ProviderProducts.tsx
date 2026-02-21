@@ -34,7 +34,7 @@ export const ProviderProducts = () => {
 
       {products.map(prod => (
         <div key={prod.id}>
-          {prod.name} - ${prod.price}
+          {prod.name} - €{prod.price}
           <button onClick={() => setEditingProduct(prod)}>Editar</button>
           <button onClick={() => handleDelete(prod.id)}>Eliminar</button>
         </div>

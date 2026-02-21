@@ -35,7 +35,7 @@ export const OrdersOverview = () => {
               <tr key={order.id}>
                 <td>#{order.id}</td>
                 <td>{order.user?.name}</td>
-                <td>${order.total}</td>
+                <td>€{order.total}</td>
                 <td>{order.status}</td>
               </tr>
             ))}

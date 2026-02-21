@@ -34,7 +34,7 @@ export const StatsPanel = () => {
 
       <div className="stat-card">
         <h3>Ingresos</h3>
-        <p>${stats.total_revenue}</p>
+        <p>€{stats.total_revenue}</p>
       </div>
     </div>
   );

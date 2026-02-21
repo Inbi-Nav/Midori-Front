@@ -8,6 +8,7 @@ import { ShopPage } from "../pages/shop/ShopPage";
 import { AdminDashboard } from "../pages/admin/AdminDashboard";
 import { RoleRoute } from "./RoleRoutes";
 import { ProviderDashboard } from "../pages/provider/ProviderDashboard";
+import { CartPage } from "../pages/cart/CartPage";
 
 export const AppRoutes = () => {
   const { isAuthenticated, user } = useAuthStore();
@@ -29,34 +30,38 @@ export const AppRoutes = () => {
   },
 
   {
-      path: "/shop",
-      element: isAuthenticated ? <ShopPage /> : <Navigate to="/auth/login" />,
-    },
+    path: "/shop",
+    element: isAuthenticated ? <ShopPage /> : <Navigate to="/auth/login" />,
+  },
+ 
+  {
+    path: "/admin",
+    element: (
+      <RoleRoute allowedRoles={["admin"]}>
+      <AdminDashboard />
+      </RoleRoute>
+    ),
+   },
+
+  {
+    path: "/cart",
+    element: (
+      <RoleRoute allowedRoles={["client"]}>
+        <CartPage />
+      </RoleRoute>
+    ),
+  },
+
     {
-      path: "dashboard",
-      element: isAuthenticated ? <div>Dashboard</div> : <Navigate to="/auth/login" />,
-    },
+    path: "/provider",
+    element: (
+      <RoleRoute allowedRoles={["provider"]}>
+        <ProviderDashboard />
+      </RoleRoute>
+    ),
+  },
 
-     {
-      path: "/admin",
-      element: (
-        <RoleRoute allowedRoles={["admin"]}>
-          <AdminDashboard />
-        </RoleRoute>
-      ),
-    },
-
-    // 🌿 PROVIDER
-    {
-      path: "/provider",
-      element: (
-        <RoleRoute allowedRoles={["provider"]}>
-          <ProviderDashboard />
-        </RoleRoute>
-      ),
-    },
-
-    { path: "*", element: <div>404 Not Found</div> },
+  { path: "*", element: <div>404 Not Found</div> },
   ]);
 };
 

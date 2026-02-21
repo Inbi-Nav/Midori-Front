@@ -33,7 +33,7 @@ export const ProductsOverview = () => {
             {products.map((product) => (
               <tr key={product.id}>
                 <td>{product.name}</td>
-                <td>${product.price}</td>
+                <td>€{product.price}</td>
                 <td>{product.provider?.name || "N/A"}</td>
               </tr>
             ))}
