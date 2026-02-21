@@ -1,12 +1,13 @@
 
 import { Navigate, useRoutes } from "react-router-dom";
 import { useAuthStore } from "../store/auth.store";
+import { HomePage } from "../pages/home/HomePage";
 
 export const AppRoutes = () => {
   const { isAuthenticated, user } = useAuthStore();
 
   return useRoutes([
-    { path: "/", element: <Navigate to="/home" /> },
+    { path: "/", element: <HomePage /> },
 
     { path: "auth/login", element: <div>Login Placeholder</div> },
     { path: "auth/register", element: <div>Register Placeholder</div> },

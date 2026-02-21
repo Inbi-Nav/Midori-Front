@@ -1,0 +1,61 @@
+.header {
+  background-color: var(--primary-dark);
+  padding: 20px 0;
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.nav {
+  display: flex;
+  gap: 30px;
+}
+
+.nav a {
+  color: white;
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+}
+
+.nav a:hover {
+  opacity: 0.7;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-outline {
+  border: 1px solid white;
+  padding: 8px 16px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: white;
+  color: var(--primary-dark);
+}
+
+.btn-primary {
+  background: var(--primary-medium);
+  padding: 8px 16px;
+  color: white;
+  border-radius: 4px;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
