@@ -71,3 +71,25 @@
   cursor: pointer;
   margin: 10px 0;
 }
+
+.provider-form {
+  background: white;
+  padding: 30px;
+  margin-bottom: 40px;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+}
+
+.provider-form input,
+.provider-form textarea,
+.provider-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.provider-form textarea {
+  min-height: 80px;
+}

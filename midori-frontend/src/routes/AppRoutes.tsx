@@ -5,6 +5,9 @@ import { HomePage } from "../pages/home/HomePage";
 import { AuthPage } from "../pages/auth/AuthPage";
 import { RegisterPage } from "../pages/auth/RegisterPage";
 import { ShopPage } from "../pages/shop/ShopPage";
+import { AdminDashboard } from "../pages/admin/AdminDashboard";
+import { RoleRoute } from "./RoleRoutes";
+import { ProviderDashboard } from "../pages/provider/ProviderDashboard";
 
 export const AppRoutes = () => {
   const { isAuthenticated, user } = useAuthStore();
@@ -34,10 +37,23 @@ export const AppRoutes = () => {
       element: isAuthenticated ? <div>Dashboard</div> : <Navigate to="/auth/login" />,
     },
 
+     {
+      path: "/admin",
+      element: (
+        <RoleRoute allowedRoles={["admin"]}>
+          <AdminDashboard />
+        </RoleRoute>
+      ),
+    },
+
+    // 🌿 PROVIDER
     {
-      path: "admin",
-      element:
-        isAuthenticated && user?.role === "admin" ? <div>Admin Dashboard</div> : <Navigate to="/auth/login" />,
+      path: "/provider",
+      element: (
+        <RoleRoute allowedRoles={["provider"]}>
+          <ProviderDashboard />
+        </RoleRoute>
+      ),
     },
 
     { path: "*", element: <div>404 Not Found</div> },

@@ -30,23 +30,44 @@ export const ClientLoginForm = () => {
   });
 
   const onSubmit = async (data: FormData) => {
-    try {
-      const response = await login(data);
+  try {
+    const response = await login(data);
 
-      const token = response.data.token;
-      const user = response.data.user;
+    // ⚠️ Verifica cómo lo devuelve tu backend:
+    // puede ser response.data.token o response.data.access_token
+    const token = response.data.token || response.data.access_token;
+    const user = response.data.user;
 
-      if (user.role !== "client") {
-        setServerError("Este acceso es solo para clientes.");
-        return;
-      }
-
-      setAuth(token, user);
-      navigate("/shop");
-    } catch (error: any) {
-      setServerError(error.response?.data?.message || "Error al iniciar sesión");
+    if (!token || !user) {
+      setServerError("Respuesta inválida del servidor.");
+      return;
     }
-  };
+
+    setAuth(token, user);
+
+    switch (user.role) {
+      case "client":
+        navigate("/shop");
+        break;
+
+      case "provider":
+        navigate("/provider");
+        break;
+
+      case "admin":
+        navigate("/admin");
+        break;
+
+      default:
+        navigate("/");
+    }
+
+  } catch (error: any) {
+    setServerError(
+      error.response?.data?.message || "Error al iniciar sesión"
+    );
+  }
+};
 
   return (
     <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>

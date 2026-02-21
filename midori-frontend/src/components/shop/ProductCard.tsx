@@ -8,12 +8,8 @@ export const ProductCard = ({ product }: Props) => {
   return (
     <div className="product-card">
     <div className="product-image">
-    <img
-      src={`${BASE_URL}/${product.image_url}`}
-      alt={product.name}
-    />
-  </div>
-
+<img src={`${BASE_URL}/${product.image_url.replace(/^\/+/, '')}`} alt={product.name}/>  
+</div>
     <div className="product-info">
     <h4>{product.name}</h4>
     <p>€{product.price}</p>
