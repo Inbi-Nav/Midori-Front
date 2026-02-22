@@ -5,7 +5,7 @@ export const CartItem = ({ item }: any) => {
 
   return (
     <div className="cart-item">
-      <img src={`http://127.0.0.1:8000${item.image_url}`} />
+      <img src={`http://localhost:8000${item.image_url}`} />
 
       <div>
         <h4>{item.name}</h4>

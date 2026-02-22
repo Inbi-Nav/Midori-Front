@@ -7,7 +7,7 @@ export const OrdersPage = () => {
 
   return (
     <div className="orders-container">
-      <h1>Pedidos</h1>
+      <h1>Orders</h1>
 
       {role === "client" && <ClientOrders />}
       {role === "provider" && <ProviderOrders />}

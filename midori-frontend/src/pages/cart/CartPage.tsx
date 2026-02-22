@@ -13,8 +13,7 @@ export const CartPage = () => {
 
       {items.map(item => (
         <CartItem key={item.id} item={item} />
-      ))}
-
+    ))}
       <CartSummary />
     </div>
   );

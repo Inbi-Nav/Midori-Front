@@ -4,52 +4,100 @@ import {
   updateOrderStatus,
 } from "../../api/order.service";
 
+const providerStatuses = [
+  "processing",
+  "shipped",
+  "delivered",
+];
+
 export const ProviderOrders = () => {
   const [orders, setOrders] = useState<any[]>([]);
+  const [loadingId, setLoadingId] = useState<number | null>(null);
 
   useEffect(() => {
-    getProviderOrders()
-      .then(res => setOrders(res.data));
+    loadOrders();
   }, []);
+
+  const loadOrders = async () => {
+    try {
+      const res = await getProviderOrders();
+      setOrders(res.data);
+    } catch (error) {
+      console.error("Failed to load orders");
+    }
+  };
 
   const handleStatusChange = async (
     orderId: number,
     newStatus: string
   ) => {
-    await updateOrderStatus(orderId, newStatus);
+    try {
+      setLoadingId(orderId);
 
-    setOrders(prev =>
-      prev.map(o =>
-        o.id === orderId
-          ? { ...o, status: newStatus }
-          : o
-      )
-    );
+      const res = await updateOrderStatus(orderId, newStatus);
+
+      setOrders(prev =>
+        prev.map(o =>
+          o.id === orderId
+            ? res.data
+            : o
+        )
+      );
+
+    } catch (error: any) {
+      alert(error.response?.data?.message || "Status update failed");
+    } finally {
+      setLoadingId(null);
+    }
   };
 
   return (
     <div>
-      {orders.map(order => (
-        <div key={order.id} className="order-card">
-          <div>
-            <strong>Pedido #{order.id}</strong>
-            <p>Cliente: {order.user?.name}</p>
-            <p>Estado actual: {order.status}</p>
-          </div>
+      <h2>Received Orders</h2>
 
-          <select
-            value={order.status}
-            onChange={(e) =>
-              handleStatusChange(order.id, e.target.value)
-            }
+      {orders.length === 0 && <p>No orders found.</p>}
+
+      {orders.map(order => {
+        const isLocked = ["delivered", "cancelled"].includes(order.status);
+
+        return (
+          <div
+            key={order.id}
+            className="order-card"
+            style={{
+              border: "1px solid #ddd",
+              padding: "15px",
+              marginBottom: "15px",
+              borderRadius: "8px",
+            }}
           >
-            <option value="pending">Pendiente</option>
-            <option value="processing">En proceso</option>
-            <option value="shipped">Enviado</option>
-            <option value="delivered">Entregado</option>
-          </select>
-        </div>
-      ))}
+            <strong>Order #{order.id}</strong>
+
+            <p>Customer: {order.user?.name}</p>
+            <p>Status: <strong>{order.status}</strong></p>
+
+            {!isLocked ? (
+              <select
+                value={order.status}
+                disabled={loadingId === order.id}
+                onChange={(e) =>
+                  handleStatusChange(order.id, e.target.value)
+                }
+              >
+                {providerStatuses.map(status => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <p style={{ color: "gray" }}>
+                Order is finalized
+              </p>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };

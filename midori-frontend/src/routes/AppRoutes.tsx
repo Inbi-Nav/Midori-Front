@@ -10,6 +10,7 @@ import { RoleRoute } from "./RoleRoutes";
 import { ProviderDashboard } from "../pages/provider/ProviderDashboard";
 import { CartPage } from "../pages/cart/CartPage";
 import { OrdersPage } from "../pages/orders/OrdersPage";
+import { ProfilePage } from "../pages/profile/ProfilePage";
 
 export const AppRoutes = () => {
   const { isAuthenticated, user } = useAuthStore();
@@ -62,7 +63,16 @@ export const AppRoutes = () => {
     ),
   },
 
-    {
+  {
+    path: "/profile",
+    element: (
+      <RoleRoute allowedRoles={["client", "provider", "admin"]}>
+        <ProfilePage />
+      </RoleRoute>
+    ),
+  },
+  
+  {
     path: "/provider",
     element: (
       <RoleRoute allowedRoles={["provider"]}>

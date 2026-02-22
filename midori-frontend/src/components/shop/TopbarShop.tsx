@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { requestProvider } from "../../api/client.service";
 import { useAuthStore } from "../../store/auth.store";
 import { useState } from "react";
+// import { logout } from "../../api/auth.service";
 
 export const TopbarShop = () => {
-  const { role } = useAuthStore();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { role, logout } = useAuthStore();
 
   const handleProviderRequest = async () => {
     try {
@@ -22,6 +25,12 @@ export const TopbarShop = () => {
     }
   };
 
+
+  const handleLogout = async () => {
+  await logout();
+  navigate("/");
+};
+
   return (
     <div className="shop-topbar">
       <div className="logo">Midori</div>
@@ -35,8 +44,9 @@ export const TopbarShop = () => {
           >
             {loading ? "Enviando..." : "Provider Request"}
           </button>
+          
         )}
-
+       <button onClick={handleLogout}>Logout</button>
         <Link to="/cart">Cesta</Link>
         <Link to="/orders">Mis pedidos</Link>
         <Link to="/profile">Perfil</Link>

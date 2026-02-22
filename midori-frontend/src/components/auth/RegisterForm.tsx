@@ -46,7 +46,7 @@ export const RegisterForm = () => {
       const response = await registerUser(data);
 
 
-      const token = response.data.token;
+      const token = response.data.token || response.data.access_token;
       const user = response.data.user;
 
       if (!token) {

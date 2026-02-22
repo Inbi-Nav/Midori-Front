@@ -1,0 +1,30 @@
+.profile-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 40px 0;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

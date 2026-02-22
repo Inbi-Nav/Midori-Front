@@ -15,7 +15,7 @@ export const AdminLoginForm = () => {
     try {
       const response = await login(data);
 
-      const token = response.data.token;
+      const token = response.data.token || response.data.access_token;
       const user = response.data.user;
 
       if (user.role !== "admin") {
