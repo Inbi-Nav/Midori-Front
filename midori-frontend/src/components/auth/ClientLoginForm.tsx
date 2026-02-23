@@ -5,6 +5,7 @@ import { login } from "../../api/auth.service";
 import { useAuthStore } from "../../store/auth.store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "../../styles/auth.css";
 
 interface FormData {
   email: string;
@@ -30,52 +31,55 @@ export const ClientLoginForm = () => {
   });
 
   const onSubmit = async (data: FormData) => {
-  try {
-    const response = await login(data);
+    try {
+      const response = await login(data);
+      const token = response.data.token || response.data.access_token;
+      const user = response.data.user;
 
-    const token = response.data.token || response.data.access_token;
-    const user = response.data.user;
+      if (!token || !user) {
+        setServerError("Respuesta inválida del servidor.");
+        return;
+      }
 
-    if (!token || !user) {
-      setServerError("Respuesta inválida del servidor.");
-      return;
+      setAuth(token, user);
+
+      switch (user.role) {
+        case "client":
+          navigate("/shop");
+          break;
+        case "provider":
+          navigate("/provider");
+          break;
+        case "admin":
+          navigate("/admin");
+          break;
+        default:
+          navigate("/");
+      }
+    } catch (error: any) {
+      setServerError(
+        error.response?.data?.message || "Error al iniciar sesión"
+      );
     }
-
-    setAuth(token, user);
-
-    switch (user.role) {
-      case "client":
-        navigate("/shop");
-        break;
-
-      case "provider":
-        navigate("/provider");
-        break;
-
-      case "admin":
-        navigate("/admin");
-        break;
-
-      default:
-        navigate("/");
-    }
-
-  } catch (error: any) {
-    setServerError(
-      error.response?.data?.message || "Error al iniciar sesión"
-    );
-  }
-};
+  };
 
   return (
     <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
       <h2>Bienvenido a Midori</h2>
 
-      <input type="email" placeholder="Email" {...register("email")} />
-      <p className="error">{errors.email?.message}</p>
+      <input 
+        type="email" 
+        placeholder="Email" 
+        {...register("email")} 
+      />
+      {errors.email && <p className="error">{errors.email.message}</p>}
 
-      <input type="password" placeholder="Contraseña" {...register("password")} />
-      <p className="error">{errors.password?.message}</p>
+      <input 
+        type="password" 
+        placeholder="Contraseña" 
+        {...register("password")} 
+      />
+      {errors.password && <p className="error">{errors.password.message}</p>}
 
       {serverError && <p className="error">{serverError}</p>}
 

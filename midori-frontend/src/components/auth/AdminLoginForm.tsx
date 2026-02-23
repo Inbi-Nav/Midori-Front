@@ -3,6 +3,7 @@ import { login } from "../../api/auth.service";
 import { useAuthStore } from "../../store/auth.store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "../../styles/auth.css";
 
 export const AdminLoginForm = () => {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ export const AdminLoginForm = () => {
   const onSubmit = async (data: any) => {
     try {
       const response = await login(data);
-
       const token = response.data.token || response.data.access_token;
       const user = response.data.user;
 
@@ -31,11 +31,20 @@ export const AdminLoginForm = () => {
   };
 
   return (
-    <form className="auth-form admin" onSubmit={handleSubmit(onSubmit)}>
+    <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
       <h2>Administrador</h2>
 
-      <input type="email" placeholder="Email" {...register("email")} />
-      <input type="password" placeholder="Contraseña" {...register("password")} />
+      <input 
+        type="email" 
+        placeholder="Email" 
+        {...register("email")} 
+      />
+      
+      <input 
+        type="password" 
+        placeholder="Contraseña" 
+        {...register("password")} 
+      />
 
       {error && <p className="error">{error}</p>}
 

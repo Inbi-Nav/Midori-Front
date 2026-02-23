@@ -5,6 +5,7 @@ import { register as registerUser } from "../../api/auth.service";
 import { useAuthStore } from "../../store/auth.store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "../../styles/auth.css";
 
 interface RegisterData {
   name: string;
@@ -44,8 +45,6 @@ export const RegisterForm = () => {
 
     try {
       const response = await registerUser(data);
-
-
       const token = response.data.token || response.data.access_token;
       const user = response.data.user;
 
@@ -55,7 +54,6 @@ export const RegisterForm = () => {
       }
 
       setAuth(token, user);
-
       navigate("/shop");
     } catch (error: any) {
       if (error.response?.status === 422) {
@@ -72,35 +70,35 @@ export const RegisterForm = () => {
 
   return (
     <form className="auth-form register" onSubmit={handleSubmit(onSubmit)}>
-      <h2>Crear cuenta en Midori</h2>
+      <h2>Crear cuenta</h2>
 
       <input
         type="text"
         placeholder="Nombre completo"
         {...register("name")}
       />
-      <p className="error">{errors.name?.message}</p>
+      {errors.name && <p className="error">{errors.name.message}</p>}
 
       <input
         type="email"
         placeholder="Correo electrónico"
         {...register("email")}
       />
-      <p className="error">{errors.email?.message}</p>
+      {errors.email && <p className="error">{errors.email.message}</p>}
 
       <input
         type="password"
         placeholder="Contraseña"
         {...register("password")}
       />
-      <p className="error">{errors.password?.message}</p>
+      {errors.password && <p className="error">{errors.password.message}</p>}
 
       <input
         type="password"
         placeholder="Confirmar contraseña"
         {...register("password_confirmation")}
       />
-      <p className="error">{errors.password_confirmation?.message}</p>
+      {errors.password_confirmation && <p className="error">{errors.password_confirmation.message}</p>}
 
       {serverError && <p className="error">{serverError}</p>}
 
