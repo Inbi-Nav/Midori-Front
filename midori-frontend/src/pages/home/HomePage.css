@@ -3,7 +3,7 @@
   background: transparent;
   position: relative;
   z-index: 5;
-  min-height: 600px; /* Asegura que la sección tenga altura */
+  min-height: 600px; 
 }
 
 .section-title {
@@ -98,7 +98,6 @@
   text-shadow: 0 0 10px rgba(255, 200, 220, 0.5);
 }
 
-/* Asegurar que las secciones sean visibles */
 section {
   min-height: 100vh;
   display: flex;

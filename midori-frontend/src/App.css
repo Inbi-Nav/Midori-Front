@@ -4,7 +4,6 @@
   position: relative;
 }
 
-/* Eliminar estilos por defecto de Vite */
 .logo, .card, .read-the-docs {
   display: none;
 }

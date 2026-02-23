@@ -36,19 +36,16 @@ a {
   z-index: 5;
 }
 
-/* Utilidades de texto */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cinzel', serif;
   letter-spacing: 2px;
 }
 
-/* Animaciones globales */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .container {
     width: 95%;

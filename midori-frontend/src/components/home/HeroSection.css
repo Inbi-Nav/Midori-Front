@@ -9,7 +9,6 @@
   overflow: hidden;
 }
 
-/* Grid sutil */
 .hero-grid {
   position: absolute;
   top: 0;
@@ -24,7 +23,6 @@
   z-index: 1;
 }
 
-/* Orbes de luz */
 .orb {
   position: absolute;
   border-radius: 50%;
@@ -74,7 +72,7 @@
 .hero h1 {
   font-size: 5rem;
   margin-bottom: 20px;
-  margin-top: 0; /* Asegurar que no hay margen superior extra */
+  margin-top: 0; 
   font-family: 'Cinzel', serif;
   letter-spacing: 8px;
   text-transform: uppercase;
@@ -195,7 +193,6 @@
   100% { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 3rem;

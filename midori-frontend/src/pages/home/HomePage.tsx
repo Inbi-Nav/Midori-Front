@@ -13,7 +13,6 @@ export const HomePage = () => {
       <Header />
       <HeroSection />
       
-      {/* Sección de Categorías - NUEVA */}
       <CategoryCards />
       
 

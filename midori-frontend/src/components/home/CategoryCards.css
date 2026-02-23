@@ -187,7 +187,6 @@
   transform: translateX(5px);
 }
 
-/* Responsive */
 @media (max-width: 968px) {
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);

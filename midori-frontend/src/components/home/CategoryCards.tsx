@@ -5,7 +5,6 @@ import TeaCollectionImg from "../../assets/Tea-colections.png";
 import HomeLivingCollection from "../../assets/HomeLiving.png";
 
 
-// Imágenes representativas para cada categoría
 const categoryImages = {
   "Home Decor": "https://images.unsplash.com/photo-1618220179428-22790b461013?w=500&auto=format",
   "Studio Ghibli Collections": "../../assets/Studio-ghibli.png",

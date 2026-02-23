@@ -23,16 +23,13 @@ export const HeroSection = () => {
 
   return (
     <section className="hero" ref={heroRef}>
-      {/* Grid de fondo */}
       <div className="hero-grid"></div>
       
-      {/* Orbes de luz */}
       <div className="orb orb-1"></div>
       <div className="orb orb-2"></div>
       <div className="orb orb-3"></div>
       
       <div className="container hero-content">
-        {/* Eliminado el logo-circle grande */}
         
         <motion.h1
           initial={{ y: 30, opacity: 0 }}
