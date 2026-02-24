@@ -1,0 +1,95 @@
+.shop-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.shop-sidebar {
+  width: 250px;
+  padding: 40px 20px;
+  background: #f4f6f5;
+}
+
+.shop-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.shop-topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 40px;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid #eee;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; 
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.product-info h4 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.product-info p {
+  font-weight: 500;
+  color: #0f3d2e;
+}
+
+.category-list li {
+  list-style: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.provider-form {
+  background: white;
+  padding: 30px;
+  margin-bottom: 40px;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+}
+
+.provider-form input,
+.provider-form textarea,
+.provider-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.provider-form textarea {
+  min-height: 80px;
+}
