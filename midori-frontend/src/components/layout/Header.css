@@ -54,7 +54,7 @@
   font-weight: 700;
   color: #fff;
   text-shadow: 0 0 15px rgba(255, 200, 220, 0.8),
-               0 0 25px rgba(180, 240, 255, 0.5);
+   0 0 25px rgba(180, 240, 255, 0.5);
   position: relative;
   z-index: 2;
   line-height: 1;
@@ -83,19 +83,20 @@
   letter-spacing: 4px;
   font-family: 'Cinzel', serif;
   text-shadow: 0 0 10px rgba(255, 200, 220, 0.7),
-               0 0 20px rgba(180, 240, 255, 0.5);
+   0 0 20px rgba(180, 240, 255, 0.5);
   color: #fff;
   transition: text-shadow 0.3s ease;
 }
 
 .logo-container:hover .logo-text {
   text-shadow: 0 0 15px rgba(255, 200, 220, 0.9),
-               0 0 30px rgba(180, 240, 255, 0.7);
+ 0 0 30px rgba(180, 240, 255, 0.7);
 }
 
 .auth-buttons {
   display: flex;
   gap: 15px;
+  align-items: center;
 }
 
 .btn-outline {
@@ -111,6 +112,7 @@
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 10px rgba(255, 200, 230, 0.3);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .btn-outline:hover {
@@ -133,6 +135,7 @@
   text-shadow: 0 0 5px rgba(180, 240, 255, 0.8);
   box-shadow: 0 0 15px rgba(180, 240, 255, 0.3);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -140,6 +143,18 @@
   border-color: #b4f0ff;
   box-shadow: 0 0 25px rgba(180, 240, 255, 0.7);
   transform: translateY(-2px);
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-name {
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {

@@ -21,13 +21,13 @@ export const MyProducts = () => {
 
   return (
     <div>
-      <h2>Mis Productos</h2>
+      <h2>My Products</h2>
 
       {products.map(product => (
         <div key={product.id}>
           {product.name} - €{product.price}
           <button onClick={() => handleDelete(product.id)}>
-            Eliminar
+            Delete
           </button>
         </div>
       ))}

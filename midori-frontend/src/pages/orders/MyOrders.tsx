@@ -11,11 +11,11 @@ export const MyOrders = () => {
 
   return (
     <div>
-      <h2>Mis Pedidos</h2>
+      <h2>My Orders</h2>
 
       {orders.map(order => (
         <div key={order.id}>
-          Pedido #{order.id} — {order.status}
+          Order #{order.id} — {order.status}
         </div>
       ))}
     </div>

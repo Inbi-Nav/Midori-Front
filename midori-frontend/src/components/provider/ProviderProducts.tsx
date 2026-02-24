@@ -2,13 +2,26 @@ import { useEffect, useState } from "react";
 import { deleteProduct } from "../../api/provider.service";
 import { getProducts } from "../../api/product.service";
 import { ProductForm } from "./ProductForm";
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || '';
 
 export const ProviderProducts = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [editingProduct, setEditingProduct] = useState<any | null>(null);
+  const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const fetchProducts = () => {
-    getProducts().then(res => setProducts(res.data));
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const res = await getProducts();
+      setProducts(res.data);
+    } catch (error) {
+      console.error("Error loading products");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -16,29 +29,106 @@ export const ProviderProducts = () => {
   }, []);
 
   const handleDelete = async (id: number) => {
-    await deleteProduct(id);
+    if (window.confirm("¿Estás seguro de eliminar este producto?")) {
+      try {
+        await deleteProduct(id);
+        await fetchProducts();
+      } catch (error) {
+        console.error("Error deleting product");
+      }
+    }
+  };
+
+  const handleEdit = (product: any) => {
+    setEditingProduct(product);
+    setShowForm(true);
+    setTimeout(() => {
+      document.querySelector('.provider-form')?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }, 100);
+  };
+
+  const handleAddNew = () => {
+    setEditingProduct(null);
+    setShowForm(true);
+    setTimeout(() => {
+      document.querySelector('.provider-form')?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }, 100);
+  };
+
+  const handleSuccess = () => {
+    setShowForm(false);
+    setEditingProduct(null);
     fetchProducts();
   };
 
+  const handleCancel = () => {
+    setShowForm(false);
+    setEditingProduct(null);
+  };
+
+  if (loading) {
+    return (
+      <div className="loading-state">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <ProductForm
-        product={editingProduct}
-        onSuccess={() => {
-          setEditingProduct(null);
-          fetchProducts();
-        }}
-      />
+    <div className="provider-products">
+      {showForm && (
+        <ProductForm
+          product={editingProduct}
+          onSuccess={handleSuccess}
+          onCancel={handleCancel}
+        />
+      )}
+      {products.length === 0 ? (
+        <p className="no-products">No tienes productos aún. Crea tu primer producto arriba.</p>
+      ) : (
+        <div className="products-grid">
+          {products.map(product => {
+            const imageUrl = product.image_url
+              ? `${BASE_URL}/${product.image_url.replace(/^\/+/, '')}`
+              : '/placeholder-image.jpg';
 
-      <h2>Mis Productos</h2>
-
-      {products.map(prod => (
-        <div key={prod.id}>
-          {prod.name} - €{prod.price}
-          <button onClick={() => setEditingProduct(prod)}>Editar</button>
-          <button onClick={() => handleDelete(prod.id)}>Eliminar</button>
+            return (
+              <div key={product.id} className="product-card">
+                <div className="product-card-image">
+                  <img src={imageUrl} alt={product.name} />
+                </div>
+                <div className="product-card-content">
+                  <h3 className="product-card-title">{product.name}</h3>
+                  <div className="product-card-price">€{product.price}</div>
+                  <div className="product-card-stock">
+                    Stock: {product.stock}
+                  </div>
+                  <div className="product-card-actions">
+                    <button 
+                      className="btn-edit"
+                      onClick={() => handleEdit(product)}
+                    >
+                      <FiEdit2 size={16} /> Edit
+                    </button>
+                    <button 
+                      className="btn-delete"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      <FiTrash2 size={16} /> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      ))}
+      )}
     </div>
   );
 };

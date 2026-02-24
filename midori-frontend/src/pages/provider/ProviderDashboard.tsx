@@ -1,24 +1,56 @@
+import { useState } from "react";
+import { ProviderLayout } from "../../components/provider/ProviderLayout";
+import { ProductForm } from "../../components/provider/ProductForm";
 import { ProviderProducts } from "../../components/provider/ProviderProducts";
 import { ProviderOrders } from "../../components/orders/ProviderOrders";
-import { ProductForm } from "../../components/provider/ProductForm";
-import { MyProducts } from "../../components/provider/MyProducts";
+import { CategoriesManager } from "../../components/provider/CategoriesManager";
+import "../../styles/provider.css";
 
 export const ProviderDashboard = () => {
+  const [activeTab, setActiveTab] = useState("products");
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "products":
+        return (
+          <div className="provider-section">
+            <h2 className="section-title">All Products</h2>
+            <ProviderProducts />
+          </div>
+        );
+      
+      case "new-product":
+        return (
+          <div className="provider-section">
+            <h2 className="section-title">New Product</h2>
+            <ProductForm onSuccess={() => setActiveTab("products")} />
+          </div>
+        );
+      
+      case "orders":
+        return (
+          <div className="provider-section">
+            <h2 className="section-title">Received Orders</h2>
+            <ProviderOrders />
+          </div>
+        );
+      
+      case "categories":
+        return (
+          <div className="provider-section">
+            <h2 className="section-title">Manage Categories</h2>
+            <CategoriesManager />
+          </div>
+        );
+      
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="provider-dashboard">
-
-      <h1>Provider Dashboard</h1>
-
-      <section>
-        <h2>Manage Products</h2>
-        <ProductForm />
-        <MyProducts />
-      </section>
-
-      <section style={{ marginTop: "60px" }}>
-        <ProviderOrders />
-      </section>
-
-    </div>
+    <ProviderLayout activeTab={activeTab} onTabChange={setActiveTab}>
+      {renderContent()}
+    </ProviderLayout>
   );
 };
