@@ -19,20 +19,20 @@ export const AdminLoginForm = () => {
       const user = response.data.user;
 
       if (user.role !== "admin") {
-        setError("No tienes permisos de administrador.");
+        setError("You do not have administrator permissions.");
         return;
       }
 
       setAuth(token, user);
       navigate("/admin");
     } catch (err: any) {
-      setError(err.response?.data?.message || "Error de autenticación");
+      setError(err.response?.data?.message || "Error during login");
     }
   };
 
   return (
     <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-      <h2>Administrador</h2>
+      <h2>Administrator</h2>
 
       <input 
         type="email" 
@@ -42,14 +42,14 @@ export const AdminLoginForm = () => {
       
       <input 
         type="password" 
-        placeholder="Contraseña" 
+        placeholder="Password" 
         {...register("password")} 
       />
 
       {error && <p className="error">{error}</p>}
 
       <button type="submit" className="btn-dark-full">
-        Acceso Admin
+        Admin Login
       </button>
     </form>
   );

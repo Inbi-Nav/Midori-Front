@@ -266,7 +266,7 @@ export const ShopPage = () => {
           activeFilters={activeFilters}
         />
 
-        {loading && <div className="loading-skeleton">Loading magical items...</div>}
+        {loading && <div className="loading-skeleton">Loading items...</div>}
 
         {!loading && productsByCategory.length === 0 && (
           <div className="loading-skeleton">No products found</div>

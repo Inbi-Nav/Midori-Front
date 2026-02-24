@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import "./HeroSection.css";
+import "../../styles/HeroSection.css";
 
 export const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);

@@ -70,7 +70,7 @@ export const ProviderOrders = () => {
   return (
     <div className="orders-section">
       {orders.length === 0 ? (
-        <p className="no-orders">No hay pedidos recibidos</p>
+        <p className="no-orders">No orders available</p>
       ) : (
         <div className="orders-grid">
           {orders.map(order => {
@@ -79,7 +79,7 @@ export const ProviderOrders = () => {
             return (
               <div key={order.id} className="order-card">
                 <div className="order-header">
-                  <span className="order-id">Pedido #{order.id}</span>
+                  <span className="order-id">Order #{order.id}</span>
                   <span className={`order-status ${getStatusClass(order.status)}`}>
                     {order.status}
                   </span>
@@ -87,7 +87,7 @@ export const ProviderOrders = () => {
 
                 <div className="order-details">
                   <div className="detail-item">
-                    <span className="detail-label">Cliente</span>
+                    <span className="detail-label">Client</span>
                     <span className="detail-value">{order.user?.name}</span>
                   </div>
                   <div className="detail-item">
@@ -99,7 +99,7 @@ export const ProviderOrders = () => {
                     <span className="detail-value">€{order.total_amount}</span>
                   </div>
                   <div className="detail-item">
-                    <span className="detail-label">Fecha</span>
+                    <span className="detail-label">Date</span>
                     <span className="detail-value">
                       {new Date(order.created_at).toLocaleDateString()}
                     </span>
@@ -121,12 +121,12 @@ export const ProviderOrders = () => {
                       ))}
                     </select>
                     {updatingId === order.id && (
-                      <span className="updating">Actualizando...</span>
+                      <span className="updating">Updating...</span>
                     )}
                   </div>
                 ) : (
                   <p className="finalized-message">
-                    Pedido finalizado - No se puede cambiar el estado
+                    Order finalized - Status cannot be changed
                   </p>
                 )}
               </div>

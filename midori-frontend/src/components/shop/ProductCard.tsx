@@ -21,7 +21,6 @@ export const ProductCard = ({ product, onClick }: Props) => {
       const result = addToCart(product);
       if (!result.success) {
         setError(result.message || "");
-        // Limpiar error después de 3 segundos
         setTimeout(() => setError(""), 3000);
       }
     }

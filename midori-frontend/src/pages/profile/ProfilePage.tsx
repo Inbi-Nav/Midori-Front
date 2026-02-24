@@ -27,7 +27,7 @@ export const ProfilePage = () => {
       {loading ? (
         <div className="profile-loading">
           <div className="loading-spinner"></div>
-          <p>profile Loading...</p>
+          <p>Loading Profile...</p>
         </div>
       ) : (
         <div className="profile-page">

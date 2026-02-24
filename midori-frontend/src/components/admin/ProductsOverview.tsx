@@ -9,24 +9,24 @@ export const ProductsOverview = () => {
   useEffect(() => {
     getAllProducts()
       .then((res) => setProducts(res.data))
-      .catch(() => setError("Error cargando productos"))
+      .catch(() => setError("Error loading products"))
       .finally(() => setLoading(false));
   }, []);
 
   return (
     <div className="admin-section">
-      <h2>Supervisión de Productos</h2>
+      <h2>Products Overview</h2>
 
-      {loading && <p>Cargando productos...</p>}
+      {loading && <p>Loading products...</p>}
       {error && <p className="error">{error}</p>}
 
       {!loading && (
         <table className="admin-table">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Proveedor</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Provider</th>
             </tr>
           </thead>
           <tbody>

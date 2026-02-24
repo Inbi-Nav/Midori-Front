@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import "./CategoryCards.css";
+import "../../styles/CategoryCards.css";
 import ghibliCollectionImg from "../../assets/Studio-ghibli.png";
 import TeaCollectionImg from "../../assets/Tea-colections.png";
 import HomeLivingCollection from "../../assets/HomeLiving.png";
@@ -30,9 +30,9 @@ const categories = [
     id: 3,
     name: "Tea Collections",
     description: "Teas and accessories for tea rituals.",
-  
     image: TeaCollectionImg,
     color: "rgba(210, 180, 255, 0.3)"
+
   }
 ];
 
@@ -54,7 +54,7 @@ export const CategoryCards = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: false }}
         >
-          Categorías
+         Explore our Categories
         </motion.h2>
         
         <div className="categories-grid">
@@ -99,8 +99,8 @@ export const CategoryCards = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Explorar
-                    <span className="button-arrow">→</span>
+                    Explore
+                    <span className="button-arrow"></span>
                   </motion.button>
                 </div>
               </div>

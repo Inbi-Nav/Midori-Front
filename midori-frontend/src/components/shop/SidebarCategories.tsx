@@ -18,12 +18,12 @@ export const SidebarCategories = ({ onSelectCategory }: Props) => {
 
   return (
     <div>
-      <h3>Categorías</h3>
+      <h3>Categories</h3>
 
-      {loading && <p>Cargando...</p>}
+      {loading && <p>Loading...</p>}
 
       <ul className="category-list">
-        <li onClick={() => onSelectCategory(null)}>Todas</li>
+        <li onClick={() => onSelectCategory(null)}>All</li>
         {categories.map(cat => (
           <li key={cat.id} onClick={() => onSelectCategory(cat.id)}>
             {cat.name}

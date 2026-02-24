@@ -8,7 +8,6 @@ export const CartItem = ({ item }: any) => {
   const { updateQuantity, removeFromCart } = useCartStore();
   const [error, setError] = useState("");
 
-  // Asegurar que el precio sea número
   const price = typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0;
   const stock = typeof item.stock === 'number' ? item.stock : parseInt(item.stock) || 0;
   const quantity = typeof item.quantity === 'number' ? item.quantity : parseInt(item.quantity) || 1;

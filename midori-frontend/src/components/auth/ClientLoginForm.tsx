@@ -13,8 +13,8 @@ interface FormData {
 }
 
 const schema = yup.object({
-  email: yup.string().email("Email inválido").required("El email es obligatorio"),
-  password: yup.string().required("La contraseña es obligatoria"),
+  email: yup.string().email("Invalid Email").required("The email is required"),
+  password: yup.string().required("The password is required"),
 });
 
 export const ClientLoginForm = () => {
@@ -37,7 +37,7 @@ export const ClientLoginForm = () => {
       const user = response.data.user;
 
       if (!token || !user) {
-        setServerError("Respuesta inválida del servidor.");
+        setServerError("Invalid response from the server.");
         return;
       }
 
@@ -58,14 +58,14 @@ export const ClientLoginForm = () => {
       }
     } catch (error: any) {
       setServerError(
-        error.response?.data?.message || "Error al iniciar sesión"
+        error.response?.data?.message || "Error during login"
       );
     }
   };
 
   return (
     <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-      <h2>Bienvenido a Midori</h2>
+      <h2>Welcome to Midori</h2>
 
       <input 
         type="email" 
@@ -76,7 +76,7 @@ export const ClientLoginForm = () => {
 
       <input 
         type="password" 
-        placeholder="Contraseña" 
+        placeholder="Password" 
         {...register("password")} 
       />
       {errors.password && <p className="error">{errors.password.message}</p>}
@@ -84,12 +84,12 @@ export const ClientLoginForm = () => {
       {serverError && <p className="error">{serverError}</p>}
 
       <button type="submit" className="btn-primary-full">
-        Iniciar sesión
+        Sign in
       </button>
 
       <div className="auth-links">
-        <span>¿No tienes cuenta?</span>
-        <a href="/auth/register">Regístrate</a>
+        <span>Don't have an account?</span>
+        <a href="/auth/register">Register</a>
       </div>
 
     </form>

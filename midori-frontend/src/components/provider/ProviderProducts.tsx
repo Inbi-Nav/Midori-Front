@@ -29,7 +29,7 @@ export const ProviderProducts = () => {
   }, []);
 
   const handleDelete = async (id: number) => {
-    if (window.confirm("¿Estás seguro de eliminar este producto?")) {
+    if (window.confirm("Are you sure you want to delete this product?")) {
       try {
         await deleteProduct(id);
         await fetchProducts();
@@ -90,7 +90,7 @@ export const ProviderProducts = () => {
         />
       )}
       {products.length === 0 ? (
-        <p className="no-products">No tienes productos aún. Crea tu primer producto arriba.</p>
+        <p className="no-products">No products available.</p>
       ) : (
         <div className="products-grid">
           {products.map(product => {

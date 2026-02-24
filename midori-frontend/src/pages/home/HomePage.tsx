@@ -4,7 +4,7 @@ import { HeroSection } from "../../components/home/HeroSection";
 import { Particles } from "../../components/home/Particles";
 import { CategoryCards } from "../../components/home/CategoryCards";
 import { motion } from "framer-motion";
-import "./HomePage.css";
+import "../../styles/HomePage.css";
 
 export const HomePage = () => {
   return (

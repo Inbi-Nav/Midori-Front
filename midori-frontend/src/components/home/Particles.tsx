@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import "./Particles.css";
+import "../../styles/Particles.css";
 
 interface Particle {
   id: number;

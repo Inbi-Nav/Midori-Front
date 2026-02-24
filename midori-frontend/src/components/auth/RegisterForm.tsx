@@ -15,16 +15,16 @@ interface RegisterData {
 }
 
 const schema = yup.object({
-  name: yup.string().required("El nombre es obligatorio"),
-  email: yup.string().email("Email inválido").required("El email es obligatorio"),
+  name: yup.string().required("The name is required"),
+  email: yup.string().email("Invalid Email").required("The email is required"),
   password: yup
     .string()
-    .min(6, "Mínimo 6 caracteres")
-    .required("La contraseña es obligatoria"),
+    .min(6, "Minimum 6 characters")
+    .required("The password is required"),
   password_confirmation: yup
     .string()
-    .oneOf([yup.ref("password")], "Las contraseñas no coinciden")
-    .required("Confirma tu contraseña"),
+    .oneOf([yup.ref("password")], "Passwords do not match")
+    .required("Confirm your password"),
 });
 
 export const RegisterForm = () => {
@@ -49,7 +49,7 @@ export const RegisterForm = () => {
       const user = response.data.user;
 
       if (!token) {
-        setServerError("Registro exitoso, pero no se recibió token.");
+        setServerError("Registration successful, but no token was received.");
         return;
       }
 
@@ -62,7 +62,7 @@ export const RegisterForm = () => {
         setServerError(firstError[0]);
       } else {
         setServerError(
-          error.response?.data?.message || "Error al registrarse"
+          error.response?.data?.message || "Error during registration"
         );
       }
     }
@@ -70,32 +70,32 @@ export const RegisterForm = () => {
 
   return (
     <form className="auth-form register" onSubmit={handleSubmit(onSubmit)}>
-      <h2>Crear cuenta</h2>
+      <h2>Create Account</h2>
 
       <input
         type="text"
-        placeholder="Nombre completo"
+        placeholder="Full Name"
         {...register("name")}
       />
       {errors.name && <p className="error">{errors.name.message}</p>}
 
       <input
         type="email"
-        placeholder="Correo electrónico"
+        placeholder="Email"
         {...register("email")}
       />
       {errors.email && <p className="error">{errors.email.message}</p>}
 
       <input
         type="password"
-        placeholder="Contraseña"
+        placeholder="Password"
         {...register("password")}
       />
       {errors.password && <p className="error">{errors.password.message}</p>}
 
       <input
         type="password"
-        placeholder="Confirmar contraseña"
+        placeholder="Confirm Password"
         {...register("password_confirmation")}
       />
       {errors.password_confirmation && <p className="error">{errors.password_confirmation.message}</p>}
@@ -103,12 +103,12 @@ export const RegisterForm = () => {
       {serverError && <p className="error">{serverError}</p>}
 
       <button type="submit" className="btn-primary-full">
-        Registrarme
+        Register
       </button>
 
       <div className="auth-links">
-        <span>¿Ya tienes cuenta?</span>
-        <a href="/auth/login">Inicia sesión</a>
+        <span>Already have an account?</span>
+        <a href="/auth/login">Sign in</a>
       </div>
     </form>
   );

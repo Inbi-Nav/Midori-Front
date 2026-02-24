@@ -21,7 +21,7 @@ export const CategoriesManager = () => {
     if (token) {
       loadData();
     } else {
-      console.error("No hay token de autenticación");
+      console.error("No auth token found. Cannot load categories.");
       setLoading(false);
     }
   }, [token]);
@@ -79,17 +79,17 @@ export const CategoriesManager = () => {
       setFormData({ name: "", description: "" });
       await loadData();
     } catch (err: any) {
-      setError(err.response?.data?.message || "Error al actualizar categoría");
+      setError(err.response?.data?.message || "Error updating category");
     }
   };
 
   const handleDelete = async (id: number) => {
-    if (window.confirm("¿Estás seguro de eliminar esta categoría?")) {
+    if (window.confirm("Are you sure you want to delete this category?")) {
       try {
         await deleteCategory(id);
         await loadData();
       } catch (err: any) {
-        alert(err.response?.data?.message || "Error al eliminar categoría");
+        alert(err.response?.data?.message || "Error deleting category");
       }
     }
   };
@@ -122,7 +122,7 @@ export const CategoriesManager = () => {
               type="button" 
               className="btn-icon cancel" 
               onClick={handleCancelEdit}
-              title="Cancelar edición"
+              title="Cancel editing"
             >
               <FiX size={20} />
             </button>
@@ -145,7 +145,7 @@ export const CategoriesManager = () => {
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              placeholder="Describe la categoría..."
+              placeholder="Describe the category..."
               rows={3}
             />
           </div>

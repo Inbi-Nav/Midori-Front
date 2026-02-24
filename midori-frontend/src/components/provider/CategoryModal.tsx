@@ -25,7 +25,7 @@ export const CategoryModal = ({ isOpen, onClose, onSuccess }: Props) => {
       setFormData({ name: "", description: "" });
       onClose();
     } catch (err: any) {
-      setError(err.response?.data?.message || "Error al crear categoría");
+      setError(err.response?.data?.message || "Error creating category");
     } finally {
       setLoading(false);
     }
@@ -35,7 +35,7 @@ export const CategoryModal = ({ isOpen, onClose, onSuccess }: Props) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content category-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h3>Nueva Categoría</h3>
+          <h3>New Category</h3>
           <button className="modal-close-btn" onClick={onClose}>
             <FiX size={20} />
           </button>
@@ -43,7 +43,7 @@ export const CategoryModal = ({ isOpen, onClose, onSuccess }: Props) => {
 
         <form onSubmit={handleSubmit} className="modal-form">
           <div className="form-group">
-            <label>Nombre de la categoría</label>
+            <label>Category Name</label>
             <input
               type="text"
               value={formData.name}
@@ -55,11 +55,11 @@ export const CategoryModal = ({ isOpen, onClose, onSuccess }: Props) => {
           </div>
 
           <div className="form-group">
-            <label>Descripción (opcional)</label>
+            <label>Description (optional)</label>
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              placeholder="Describe la categoría..."
+              placeholder="Describe the category..."
               rows={3}
             />
           </div>
@@ -71,7 +71,7 @@ export const CategoryModal = ({ isOpen, onClose, onSuccess }: Props) => {
               Cancelar
             </button>
             <button type="submit" className="btn-primary" disabled={loading}>
-              {loading ? "Creando..." : "Crear Categoría"}
+              {loading ? "Creating..." : "Create Category"}
             </button>
           </div>
         </form>
