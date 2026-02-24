@@ -1,55 +1,25 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { requestProvider } from "../../api/client.service";
-import { useAuthStore } from "../../store/auth.store";
-import { useState } from "react";
-// import { logout } from "../../api/auth.service";
+interface Props {
+  categories: any[];
+  onCategoryClick: (categoryId: string) => void;
+}
 
-export const TopbarShop = () => {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const { role, logout } = useAuthStore();
-
-  const handleProviderRequest = async () => {
-    try {
-      setLoading(true);
-      await requestProvider();
-      alert("Solicitud enviada al administrador.");
-    } catch (error: any) {
-      alert(
-        error.response?.data?.message ||
-        "Error enviando solicitud."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
-  const handleLogout = async () => {
-  await logout();
-  navigate("/");
-};
-
+export const TopbarShop = ({ categories, onCategoryClick }: Props) => {
   return (
     <div className="shop-topbar">
-      <div className="logo">Midori</div>
+      <div className="topbar-row">
+        <div className="logo">Midori</div>
+      </div>
 
-      <div className="topbar-actions">
-        {role === "client" && (
+      <div className="category-pills">
+        {categories.map(cat => (
           <button
-            className="btn-outline-dark"
-            onClick={handleProviderRequest}
-            disabled={loading}
+            key={cat.id}
+            className="pill"
+            onClick={() => onCategoryClick(cat.id.toString())}
           >
-            {loading ? "Enviando..." : "Provider Request"}
+            {cat.name.toUpperCase()}
           </button>
-          
-        )}
-       <button onClick={handleLogout}>Logout</button>
-        <Link to="/cart">Cesta</Link>
-        <Link to="/orders">Mis pedidos</Link>
-        <Link to="/profile">Perfil</Link>
+        ))}
       </div>
     </div>
   );

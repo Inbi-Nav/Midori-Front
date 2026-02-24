@@ -1,30 +1,65 @@
 const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace('/api', '');
 import { useCartStore } from "../../store/cart.store";
+import { FiAlertTriangle } from "react-icons/fi";
 
 interface Props {
   product: any;
+  onClick: () => void;
 }
 
+export const ProductCard = ({ product, onClick }: Props) => {
+  const { addToCart } = useCartStore();
+  const isOutOfStock = product.stock === 0;
+  const isLowStock = product.stock <= 10 && product.stock > 0;
 
-export const ProductCard = ({ product }: Props) => {
-  const { addToCart } = useCartStore();  
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isOutOfStock) {
+      addToCart(product);
+    }
+  };
+
+  const imageUrl = product.image_url
+    ? `${BASE_URL}/${product.image_url.replace(/^\/+/, '')}`
+    : '/placeholder-image.jpg';
 
   return (
-    <div className="product-card">
-      <div className="product-image">
+    <div 
+      className={`product-card ${isOutOfStock ? 'out-of-stock' : ''}`} 
+      onClick={onClick}
+    >
+      <div className="product-image-wrapper">
         <img
-          src={`${BASE_URL}/${product.image_url.replace(/^\/+/, '')}`}
+          src={imageUrl}
           alt={product.name}
+          className="product-image"
+          onError={(e) => {
+            e.currentTarget.src = '/placeholder-image.jpg';
+          }}
         />
+        {isLowStock && !isOutOfStock && (
+          <div className="stock-badge">
+            <FiAlertTriangle size={12} style={{ marginRight: '4px' }} />
+            Almost Out!
+          </div>
+        )}
+        <div className="product-hover-btn">
+          <button 
+            className="add-to-cart-btn" 
+            onClick={handleAddToCart}
+            disabled={isOutOfStock}
+          >
+            {isOutOfStock ? 'OUT OF STOCK' : 'ADD TO CART +'}
+          </button>
+        </div>
       </div>
 
       <div className="product-info">
-        <h4>{product.name}</h4>
-        <p>€{product.price}</p>
-
-        <button onClick={() => addToCart(product)}>
-          Añadir a la cesta
-        </button>
+        <div className="product-category">{product.category?.name || 'CATEGORY'}</div>
+        <h4 className="product-name">{product.name}</h4>
+        <div className="product-price-row">
+          <span className="product-price">€{product.price}</span>
+        </div>
       </div>
     </div>
   );

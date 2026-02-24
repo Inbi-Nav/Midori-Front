@@ -1,4 +1,4 @@
-import "../../styles/shop.css";
+import "../../styles/shop-ghibli.css";
 
 interface Props {
   sidebar: React.ReactNode;
@@ -10,10 +10,11 @@ export const ShopLayout = ({ sidebar, topbar, children }: Props) => {
   return (
     <div className="shop-container">
       <aside className="shop-sidebar">{sidebar}</aside>
-
       <div className="shop-main">
         {topbar}
-        <div className="shop-content">{children}</div>
+        <main className="shop-content-wrapper">
+          {children}
+        </main>
       </div>
     </div>
   );
