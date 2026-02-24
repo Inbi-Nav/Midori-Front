@@ -34,20 +34,20 @@ export const ChangePasswordForm = () => {
     setError("");
 
     if (form.new_password !== form.new_password_confirmation) {
-      setError("Las contraseñas nuevas no coinciden");
+      setError("the new password and confirmation do not match");
       setLoading(false);
       return;
     }
 
     if (form.new_password.length < 6) {
-      setError("La contraseña debe tener al menos 6 caracteres");
+      setError("The new password must be at least 6 characters long");
       setLoading(false);
       return;
     }
 
     try {
       const res = await changePassword(form);
-      setMessage("Contraseña actualizada correctamente");
+      setMessage("Password updated successfully");
       setForm({
         current_password: "",
         new_password: "",
@@ -56,7 +56,7 @@ export const ChangePasswordForm = () => {
       
       setTimeout(() => setMessage(""), 3000);
     } catch (err: any) {
-      setError(err.response?.data?.message || "Error al cambiar la contraseña");
+      setError(err.response?.data?.message || "Error updating password");
     } finally {
       setLoading(false);
     }
@@ -64,12 +64,12 @@ export const ChangePasswordForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="profile-form">
-      <h2>Cambiar Contraseña</h2>
+      <h2>Change Password</h2>
 
       <div className="form-group">
         <label htmlFor="current_password">
           <FiLock size={16} />
-          <span>Contraseña actual</span>
+          <span>Current Password</span>
         </label>
         <div className="password-input-wrapper">
           <input
@@ -94,7 +94,7 @@ export const ChangePasswordForm = () => {
       <div className="form-group">
         <label htmlFor="new_password">
           <FiLock size={16} />
-          <span>Nueva contraseña</span>
+          <span>New Password</span>
         </label>
         <div className="password-input-wrapper">
           <input
@@ -119,7 +119,7 @@ export const ChangePasswordForm = () => {
       <div className="form-group">
         <label htmlFor="new_password_confirmation">
           <FiLock size={16} />
-          <span>Confirmar nueva contraseña</span>
+          <span>Confirm New Password</span>
         </label>
         <div className="password-input-wrapper">
           <input
@@ -146,7 +146,7 @@ export const ChangePasswordForm = () => {
         className="profile-submit-btn"
         disabled={loading}
       >
-        {loading ? 'Actualizando...' : 'Actualizar contraseña'}
+        {loading ? 'Updating...' : 'Update Password'}
       </button>
 
       {message && <p className="success-message">{message}</p>}

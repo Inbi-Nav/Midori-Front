@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProviderLayout } from "../../components/provider/ProviderLayout";
+import { ProviderLayout } from "../../components/provider/providerLayout";
 import { ProductForm } from "../../components/provider/ProductForm";
 import { ProviderProducts } from "../../components/provider/ProviderProducts";
 import { ProviderOrders } from "../../components/orders/ProviderOrders";

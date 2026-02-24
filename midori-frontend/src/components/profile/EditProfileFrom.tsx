@@ -30,11 +30,11 @@ export const EditProfileForm = ({ user, onUpdate }: any) => {
       const res = await updateProfile(form);
       updateUser(res.data.user);
       onUpdate(res.data.user);
-      setMessage("Perfil actualizado correctamente");
+      setMessage("Profile updated successfully");
       
       setTimeout(() => setMessage(""), 3000);
     } catch (err: any) {
-      setError(err.response?.data?.message || "Error al actualizar el perfil");
+      setError(err.response?.data?.message || "Error updating profile");
     } finally {
       setLoading(false);
     }
@@ -42,12 +42,12 @@ export const EditProfileForm = ({ user, onUpdate }: any) => {
 
   return (
     <form onSubmit={handleSubmit} className="profile-form">
-      <h2>Información Personal</h2>
+      <h2>Personal Information</h2>
       
       <div className="form-group">
         <label htmlFor="name">
           <FiUser size={16} />
-          <span>Nombre completo</span>
+          <span>Full Name</span>
         </label>
         <input
           id="name"
@@ -55,7 +55,7 @@ export const EditProfileForm = ({ user, onUpdate }: any) => {
           name="name"
           value={form.name}
           onChange={handleChange}
-          placeholder="Tu nombre completo"
+          placeholder="Your full name"
           required
         />
       </div>
@@ -63,7 +63,7 @@ export const EditProfileForm = ({ user, onUpdate }: any) => {
       <div className="form-group">
         <label htmlFor="email">
           <FiMail size={16} />
-          <span>Correo electrónico</span>
+          <span>Email Address</span>
         </label>
         <input
           id="email"
@@ -71,7 +71,7 @@ export const EditProfileForm = ({ user, onUpdate }: any) => {
           name="email"
           value={form.email}
           onChange={handleChange}
-          placeholder="tu@email.com"
+          placeholder="your@email.com"
           required
         />
       </div>
@@ -81,7 +81,7 @@ export const EditProfileForm = ({ user, onUpdate }: any) => {
         className="profile-submit-btn"
         disabled={loading}
       >
-        {loading ? 'Guardando...' : 'Guardar cambios'}
+        {loading ? 'Saving...' : 'Save Changes'}
       </button>
 
       {message && <p className="success-message">{message}</p>}

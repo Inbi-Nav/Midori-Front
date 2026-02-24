@@ -21,7 +21,7 @@ export const SidebarIcons = ({ onProviderRequest }: Props) => {
 
   return (
     <>
-      <div className="sidebar-logo">M</div>
+      <div className="sidebar-logo">緑</div>
       
       <div className="sidebar-top">
         <Link to="/shop" className="sidebar-icon" data-tooltip="Home">
