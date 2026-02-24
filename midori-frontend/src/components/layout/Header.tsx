@@ -17,7 +17,7 @@ export const Header = () => {
             Login
           </Link>
           <Link to="/auth/register" className="btn-primary">
-            Registro
+            Sign up
           </Link>
         </div>
       </div>

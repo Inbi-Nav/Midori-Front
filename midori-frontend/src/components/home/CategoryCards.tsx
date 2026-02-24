@@ -39,6 +39,7 @@ const categories = [
 export const CategoryCards = () => {
   return (
     <motion.section 
+      id="categories"
       className="categories-section"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}

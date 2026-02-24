@@ -92,9 +92,6 @@ export const ClientLoginForm = () => {
         <a href="/auth/register">Regístrate</a>
       </div>
 
-      <div className="auth-links">
-        <a href="#">¿Olvidaste tu contraseña?</a>
-      </div>
     </form>
   );
 };

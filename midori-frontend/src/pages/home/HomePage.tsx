@@ -12,12 +12,7 @@ export const HomePage = () => {
       <Particles />
       <Header />
       <HeroSection />
-      
       <CategoryCards />
-      
-
-    
-
       <Footer />
     </>
   );

@@ -42,9 +42,8 @@ export const HeroSection = () => {
         <motion.p
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-        >
-          Descubre tu nuevo estilo
+          transition={{ duration: 0.8, delay: 0.7 }}>
+          Refine your space, discover new treasures
         </motion.p>
 
         <motion.div 
@@ -53,11 +52,14 @@ export const HeroSection = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <button className="btn-primary-large">
-            Explorar colección
+          <button className="btn-primary-large" onClick={() => {
+            const section = document.getElementById("categories"); section?.scrollIntoView({ behavior: "smooth" });
+          }}>
+            Explore our collections
+            
           </button>
           <button className="btn-outline-dark">
-            Conocer más
+            Get to know us
           </button>
         </motion.div>
       </div>
