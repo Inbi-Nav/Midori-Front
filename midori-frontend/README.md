@@ -4,19 +4,17 @@ Ecommerce Midori frontend, developed with **React 19 + TypeScript + Vite**. Cons
 
 This project is part of a practice focused on frontend development using AI assistance, documenting the complete process of:
 
-
-## Library
-- Framework | React 19 |
-- Lenguaje | TypeScript 5.9 |
-- Bundler | Vite 7 |
-- Routing | React Router DOM 7 |
-- Estado global | Redux Toolkit + Zustand |
-- Peticiones HTTP | Axios |
-- Formularios | React Hook Form + Yup |
-- Animaciones | Framer Motion |
-- Notificaciones | React Hot Toast |
-- Iconos | Heroicons, React Icons |
-- Autenticación | Cookies (js-cookie) + Laravel Passport (backend) 
+### Frontend
+- **Framework:** React 19
+- **Language:** TypeScript 5.9
+- **Bundler:** Vite 7
+- **State Management:** Zustand + Redux Toolkit
+- **Routing:** React Router DOM 7
+- **HTTP Client:** Axios
+- **Forms:** React Hook Form + Yup
+- **Animations:** Framer Motion
+- **Styling:** CSS Modules + Glassmorphism
+- **Icons:** React Icons + Heroicons
 ---
 ## Estructura del proyecto
 ```
@@ -60,3 +58,46 @@ npm install
 
 npm run dev
 ```
+User roles
+###  Client 
+**Responsibilities:**
+- Browse products with filters 
+- View product details in a modal
+- Add products to cart with stock validation
+- Manage cart 
+- Create Orders
+- View order history
+- Cancel pending orders
+- Request to become a provider
+- Edit profile
+
+### Provider 
+
+**How to become a provider:**
+1. Login as a cleint
+2. Go to the sidebar and click the "Provider Request" icon
+3. Admin receives notification and approves the request
+4. User role changes from client to provider
+
+**Responsibilities:**
+- Manage their own products
+- View received orders
+- Update order status (processing → shipped → delivered)
+- View product categories
+
+### Admin
+**Responsibilities:**
+- View dashboard with statistics 
+- Manage all users (view, update roles)
+- Oversee all products in the system
+- Track all orders with status
+- Approve or decline provider requests
+**Flujo de navegación:**
+
+##  Demo Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | admin@midori.com | midori2026 |
+| **Client** | Sara@gmail.com | Sara1234 |
+| **Provider** | inbi@midori.com | 12345678 |
