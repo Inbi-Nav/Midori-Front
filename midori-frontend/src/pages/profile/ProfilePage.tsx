@@ -36,8 +36,7 @@ export const ProfilePage = () => {
               <FiUser size={40} />
             </div>
             <div className="profile-title">
-              <h1>My Profile</h1>
-              <p>{user?.email}</p>
+              <h3>{user?.name}</h3>
             </div>
           </div>
 

@@ -15,7 +15,7 @@ export const approveProvider = (id: number) =>
 export const getStats = () => axios.get("/stats");
 
 export const getAllProducts = () => axios.get("/products");
-export const getAllOrders = () => axios.get("/orders");
+export const getAllOrders = () => axios.get("/admin/orders");
 
 export const declineProvider = (id: number) =>
   axios.patch(`/users/${id}/decline-provider`);
