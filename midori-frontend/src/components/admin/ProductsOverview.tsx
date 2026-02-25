@@ -34,7 +34,7 @@ export const ProductsOverview = () => {
               <tr key={product.id}>
                 <td>{product.name}</td>
                 <td>€{product.price}</td>
-                <td>{product.provider?.name || "N/A"}</td>
+                <td>{product.user?.name || "N/A"}</td>
               </tr>
             ))}
           </tbody>
