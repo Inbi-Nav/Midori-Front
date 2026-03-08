@@ -41,9 +41,9 @@ export const ProductModal = ({ product, onClose }: Props) => {
     });
   };
 
-  const imageUrl = product.image_url
-    ? `${BASE_URL}/${product.image_url.replace(/^\/+/, '')}`
-    : '/placeholder-image.jpg';
+
+  const imageUrl = product.image_url || '/placeholder-image.jpg';
+
 
   const isOutOfStock = product.stock === 0;
   const isLowStock = product.stock <= 10 && product.stock > 0;

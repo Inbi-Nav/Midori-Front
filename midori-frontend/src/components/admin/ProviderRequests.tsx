@@ -14,7 +14,7 @@ export const ProviderRequests = () => {
   const loadRequests = async () => {
     try {
       const res = await getProviderRequests();
-      setRequests(res.data);
+      setRequests(res.data.data);
     } catch (error) {
       console.error("Error loading requests");
     } finally {

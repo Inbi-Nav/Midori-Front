@@ -12,6 +12,7 @@ import { CartPage } from "../pages/cart/CartPage";
 import { OrdersPage } from "../pages/orders/OrdersPage";
 import { ProfilePage } from "../pages/profile/ProfilePage";
 
+
 export const AppRoutes = () => {
   const { isAuthenticated, user } = useAuthStore();
 

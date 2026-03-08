@@ -41,6 +41,11 @@ export const ClientLoginForm = () => {
         return;
       }
 
+      if (user.role === "admin") {
+        setServerError("Login not permited");
+        return;
+      }
+
       setAuth(token, user);
 
       switch (user.role) {

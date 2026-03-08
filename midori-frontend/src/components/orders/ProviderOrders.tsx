@@ -24,7 +24,7 @@ export const ProviderOrders = () => {
     try {
       setLoading(true);
       const res = await getProviderOrders();
-      setOrders(res.data);
+      setOrders(res.data.data);
     } catch (error) {
       console.error("Failed to load orders");
     } finally {
@@ -136,4 +136,4 @@ export const ProviderOrders = () => {
       )}
     </div>
   );
-};
+}; 

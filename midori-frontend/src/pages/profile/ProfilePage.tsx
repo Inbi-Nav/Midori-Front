@@ -15,7 +15,7 @@ export const ProfilePage = () => {
 
   useEffect(() => {
     getMe()
-      .then((res) => setUser(res.data))
+      .then((res) => setUser(res.data.data))
       .finally(() => setLoading(false));
   }, []);
 

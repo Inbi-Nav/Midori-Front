@@ -64,7 +64,7 @@ export const ShopPage = () => {
       getCategories()
     ])
       .then(([productsRes, categoriesRes]) => {
-        const productsData = productsRes.data;
+        const productsData = productsRes.data.data;
         const categoriesData = categoriesRes.data;
         
         setProducts(productsData);

@@ -1,4 +1,3 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace('/api', '');
 import { useCartStore } from "../../store/cart.store";
 import { FiAlertTriangle } from "react-icons/fi";
 import { useState } from "react";
@@ -26,9 +25,7 @@ export const ProductCard = ({ product, onClick }: Props) => {
     }
   };
 
-  const imageUrl = product.image_url
-    ? `${BASE_URL}/${product.image_url.replace(/^\/+/, '')}`
-    : '/placeholder-image.jpg';
+const imageUrl = product.image_url || '/placeholder-image.jpg';
 
   return (
     <div 

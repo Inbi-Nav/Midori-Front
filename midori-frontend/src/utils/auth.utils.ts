@@ -1,19 +1,33 @@
 const TOKEN_KEY = "token";
 const USER_KEY = "user";
 
-export const saveToken = (token: string) =>
+export const saveToken = (token: string) => {
   localStorage.setItem(TOKEN_KEY, token);
+};
 
-export const getToken = () =>
-  localStorage.getItem(TOKEN_KEY);
+export const getToken = () => {
+  return localStorage.getItem(TOKEN_KEY);
+};
 
 export const saveUser = (user: any) => {
+  if (!user) {
+    localStorage.removeItem(USER_KEY);
+    return;
+  }
+
   localStorage.setItem(USER_KEY, JSON.stringify(user));
 };
 
 export const getUser = () => {
-  const user = localStorage.getItem(USER_KEY);
-  return user ? JSON.parse(user) : null;
+  try {
+    const user = localStorage.getItem(USER_KEY);
+
+    if (!user || user === "undefined") return null;
+
+    return JSON.parse(user);
+  } catch {
+    return null;
+  }
 };
 
 export const clearAuthData = () => {

@@ -13,7 +13,7 @@ export const ProviderCategories = () => {
 
   const fetchCategories = async () => {
     const res = await getCategories();
-    setCategories(res.data);
+    setCategories(res.data.data);
   };
 
   useEffect(() => {
