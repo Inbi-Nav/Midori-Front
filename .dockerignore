@@ -1,0 +1,6 @@
+midori-frontend/node_modules
+midori-frontend/dist
+midori-frontend/.env
+.git
+.gitignore
+README.md

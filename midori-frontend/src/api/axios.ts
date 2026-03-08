@@ -4,6 +4,7 @@ import { getToken } from "../utils/auth.utils";
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
 });
+console.log("API URL:", import.meta.env.VITE_API_BASE_URL);
 
 instance.interceptors.request.use((config) => {
   const token = getToken();
