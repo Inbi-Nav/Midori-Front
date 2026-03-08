@@ -50,19 +50,18 @@ const imageUrl = product.image_url || '/placeholder-image.jpg';
             onClick={handleAddToCart}
             disabled={isOutOfStock}
           >
-            {isOutOfStock ? 'OUT OF STOCK' : 'ADD TO CART +'}
+            {isOutOfStock ? 'OUT OF STOCK' : 'ADD TO CART '}
           </button>
         </div>
         {error && <div className="cart-error-tooltip">{error}</div>}
       </div>
 
-      <div className="product-info">
-        <div className="product-category">{product.category?.name || 'Category'}</div>
-        <h4 className="product-name">{product.name}</h4>
-        <div className="product-price-row">
-          <span className="product-price">€{product.price}</span>
-        </div>
+    <div className="product-info">
+      <h4 className="product-name">{product.name}</h4>
+      <div className="product-price-row">
+        <span className="product-price">€{product.price}</span>
       </div>
+    </div>
     </div>
   );
 };

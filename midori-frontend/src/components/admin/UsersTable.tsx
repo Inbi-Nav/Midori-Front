@@ -7,6 +7,9 @@ export const UsersTable = () => {
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
+  const currentUserId = Number(localStorage.getItem("user_id")); 
+  // o desde tu auth store si tienes uno
+
   useEffect(() => {
     getUsers()
       .then(res => setUsers(res.data.data))
@@ -15,9 +18,12 @@ export const UsersTable = () => {
 
   const getRoleBadgeClass = (role: string) => {
     switch (role) {
-      case 'admin': return 'status-badge processing';
-      case 'provider': return 'status-badge shipped';
-      default: return 'status-badge pending';
+      case "admin":
+        return "status-badge processing";
+      case "provider":
+        return "status-badge shipped";
+      default:
+        return "status-badge pending";
     }
   };
 
@@ -30,7 +36,6 @@ export const UsersTable = () => {
       await deleteUser(id);
 
       setUsers(prev => prev.filter(user => user.id !== id));
-
     } catch (error) {
       console.error("Error deleting user");
       alert("Error deleting user");
@@ -62,30 +67,37 @@ export const UsersTable = () => {
         </thead>
 
         <tbody>
-          {users.map(user => (
-            <tr key={user.id}>
-              <td>{user.name}</td>
+          {users.map(user => {
+            const isAdmin = user.role === "admin";
+            const isSelf = user.id === currentUserId;
 
-              <td>{user.email}</td>
+            return (
+              <tr key={user.id}>
+                <td>{user.name}</td>
 
-              <td>
-                <span className={getRoleBadgeClass(user.role)}>
-                  {user.role}
-                </span>
-              </td>
+                <td>{user.email}</td>
 
-              <td>
-                <button
-                  className="btn-delete"
-                  onClick={() => handleDelete(user.id)}
-                  disabled={deletingId === user.id}
-                >
-                  <FiTrash2 size={16} />
-                </button>
-              </td>
+                <td>
+                  <span className={getRoleBadgeClass(user.role)}>
+                    {user.role}
+                  </span>
+                </td>
 
-            </tr>
-          ))}
+                <td>
+                  {!isAdmin && !isSelf && (
+                    <button
+                      className="btn-delete"
+                      onClick={() => handleDelete(user.id)}
+                      disabled={deletingId === user.id}
+                    >
+                      <FiTrash2 size={16} />
+                    </button>
+                  )}
+                </td>
+
+              </tr>
+            );
+          })}
         </tbody>
 
       </table>

@@ -14,32 +14,74 @@ export const ProductsOverview = () => {
   }, []);
 
   return (
-    <div className="admin-section">
-      <h2>Products Overview</h2>
+    <div className="admin-content">
 
-      {loading && <p>Loading products...</p>}
-      {error && <p className="error">{error}</p>}
+      <div className="table-container">
 
-      {!loading && (
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Provider</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.name}</td>
-                <td>€{product.price}</td>
-                <td>{product.user?.name || "N/A"}</td>
+        <h2 className="table-title">Products Overview</h2>
+
+        {loading && (
+          <div className="loading-state">
+            <div className="spinner"></div>
+          </div>
+        )}
+
+        {error && (
+          <div className="alert-box">
+            <span>{error}</span>
+          </div>
+        )}
+
+        {!loading && !error && (
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Provider</th>
+                <th>Stock</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+            </thead>
+
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>#{product.id}</td>
+
+                  <td>
+                    <strong>{product.name}</strong>
+                  </td>
+
+                  <td>€{product.price}</td>
+
+                  <td>{product.user?.name || "N/A"}</td>
+
+                  <td>
+                    {product.stock > 10 ? (
+                      <span className="status-badge delivered">
+                        In Stock
+                      </span>
+                    ) : product.stock > 0 ? (
+                      <span className="status-badge pending">
+                        Low
+                      </span>
+                    ) : (
+                      <span className="status-badge cancelled">
+                        Out
+                      </span>
+                    )}
+                  </td>
+
+                </tr>
+              ))}
+            </tbody>
+
+          </table>
+        )}
+
+      </div>
+
     </div>
   );
 };

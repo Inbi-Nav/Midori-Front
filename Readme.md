@@ -16,6 +16,8 @@ This project is part of a practice focused on frontend development using AI assi
 - **Styling:** CSS Modules + Glassmorphism
 - **Icons:** React Icons + Heroicons
 ---
+***Use the `main` branch to view the project.***
+
 ## Estructura del proyecto
 ```
 midori-frontend/
