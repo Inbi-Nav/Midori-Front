@@ -42,7 +42,7 @@ export const OrdersOverview = () => {
             <th>ID</th>
             <th>Client</th>
             <th>Total</th>
-            <th>Estado</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>

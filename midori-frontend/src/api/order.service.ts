@@ -15,3 +15,6 @@ export const cancelOrder = (orderId: number) =>
 
 export const createOrder = (data: any) =>
   axios.post("/orders", data);
+
+export const deleteOrder = (orderId: number) =>
+  axios.delete(`/orders/${orderId}`);
