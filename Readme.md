@@ -43,14 +43,12 @@ midori-frontend/
 
 ##  Requirement
 
-Follow these steps:
-- Backend **Midori-Back** corriendo en local o en un servidor accesible
-```sh
-git clone <URL_FRONT>
----
-cd <YOUR_PROJECT_NAME>
+Before running the frontend, make sure the **Midori backend API** is running locally or on a remote server.
+Clone the repository and start the development server:
 
-git clone https://github.com/Inbi-Nav/Midori-Front.git
+```sh
+
+git clone https://github.com/Inbi-Nav/Midori-Front
 
 cd Midori-Front/midori-frontend
 
@@ -60,6 +58,13 @@ npm install
 
 npm run dev
 ```
+##  Docker/Producción
+
+The frontend application is deployed using **Railway**.
+- Production URL:
+ [https://midori-front-production.up.railway.app/]´
+
+
 User roles
 ###  Client 
 **Responsibilities:**
