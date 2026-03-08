@@ -11,7 +11,7 @@ export const ClientOrders = () => {
   const fetchOrders = async () => {
     try {
       const res = await getMyOrders();
-      setOrders(res.data);
+      setOrders(res.data.data);
     } catch (error) {
       console.error("Error loading orders");
     }

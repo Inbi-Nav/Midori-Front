@@ -11,7 +11,7 @@ export const MyProducts = () => {
 
   const loadProducts = async () => {
     const res = await getProducts();
-    setProducts(res.data);
+    setProducts(res.data.data);
   };
 
   const handleDelete = async (id: number) => {

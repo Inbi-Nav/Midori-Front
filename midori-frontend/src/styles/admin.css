@@ -480,3 +480,29 @@ body {
     padding: 20px;
   }
 }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.dashboard-section.full {
+  grid-column: span 2;
+}
+
+.alert-box {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff3cd;
+  color: #856404;
+}
+
+.chart-container {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 16px;
+}

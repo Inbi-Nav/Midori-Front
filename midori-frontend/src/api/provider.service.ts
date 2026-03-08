@@ -22,8 +22,5 @@ export const deleteProduct = (id: number) =>
 export const getOrders = () =>
   axios.get("/orders");
 
-export const updateOrderStatus = (id: number, status: string) =>
-  axios.patch(`/orders/${id}/status`, { status });
-
 export const createCategory = (data: any) =>
   axios.post("/categories", data);

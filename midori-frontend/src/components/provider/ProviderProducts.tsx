@@ -16,7 +16,7 @@ export const ProviderProducts = () => {
     try {
       setLoading(true);
       const res = await getProducts();
-      setProducts(res.data);
+      setProducts(res.data.data);
     } catch (error) {
       console.error("Error loading products");
     } finally {
@@ -94,9 +94,7 @@ export const ProviderProducts = () => {
       ) : (
         <div className="products-grid">
           {products.map(product => {
-            const imageUrl = product.image_url
-              ? `${BASE_URL}/${product.image_url.replace(/^\/+/, '')}`
-              : '/placeholder-image.jpg';
+            const imageUrl = product.image_url || '/placeholder-image.jpg';
 
             return (
               <div key={product.id} className="product-card">

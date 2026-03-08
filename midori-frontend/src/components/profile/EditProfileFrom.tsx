@@ -24,15 +24,20 @@ export const EditProfileForm = ({ user, onUpdate }: any) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
-    setError("");
+    setError(""); 
 
     try {
-      const res = await updateProfile(form);
-      updateUser(res.data.user);
-      onUpdate(res.data.user);
+      const res = await updateProfile({
+        name: form.name,
+        email: form.email,
+      }); 
+
+      updateUser(res.data.data);
+      onUpdate(res.data.data); 
+
       setMessage("Profile updated successfully");
-      
-      setTimeout(() => setMessage(""), 3000);
+      setTimeout(() => setMessage(""), 3000); 
+
     } catch (err: any) {
       setError(err.response?.data?.message || "Error updating profile");
     } finally {

@@ -44,9 +44,12 @@ export const CartItem = ({ item }: any) => {
     }
   };
 
-  const imageUrl = item.image_url
-    ? `${BASE_URL}/${item.image_url.replace(/^\/+/, '')}`
-    : '/placeholder-image.jpg';
+  // const imageUrl = item.image_url
+  //   ? `${BASE_URL}/${item.image_url.replace(/^\/+/, '')}`
+  //   : '/placeholder-image.jpg';
+
+
+  const imageUrl = item.image_url || '/placeholder-image.jpg';
 
   const isLowStock = stock <= 5 && stock > 0;
 

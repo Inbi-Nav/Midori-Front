@@ -5,7 +5,10 @@ export const getMyOrders = () => axios.get("/orders/me");
 export const getProviderOrders = () => axios.get("/orders");
 
 export const updateOrderStatus = (id: number, status: string) =>
-  axios.patch(`/orders/${id}/status`, { status });
+  axios.patch(`/orders/${id}/status`, {
+    status,
+    _method: "PATCH",
+  });
 
 export const cancelOrder = (orderId: number) =>
   axios.patch(`/orders/${orderId}/cancel`);
