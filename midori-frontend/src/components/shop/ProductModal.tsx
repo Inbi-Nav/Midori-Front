@@ -3,67 +3,52 @@ import { createPortal } from "react-dom";
 import { FiX, FiAlertTriangle } from "react-icons/fi";
 import { useCartStore } from "../../store/cart.store";
 import { toast } from 'react-hot-toast';
-
-const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace('/api', '');
-
 interface Props {
   product: any;
   onClose: () => void;
 }
-
 export const ProductModal = ({ product, onClose }: Props) => {
   const { addToCart } = useCartStore();
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    setIsVisible(true);
+    requestAnimationFrame(() => setIsVisible(true));
     document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    return () => { document.body.style.overflow = 'unset'; };
   }, []);
-
   const handleClose = () => {
     setIsVisible(false);
     setTimeout(onClose, 300);
   };
-
   const handleAddToCart = () => {
     addToCart(product);
     toast.success('Product added to cart', {
       duration: 2000,
       position: 'bottom-right',
       style: {
-        background: 'rgba(20, 30, 25, 0.95)',
-        color: '#b0e0d6',
-        border: '2px solid #b0e0d6',
+        background: 'rgba(14, 22, 18, 0.95)',
+        color: '#7edad0',
+        border: '1px solid rgba(126, 218, 208, 0.3)',
+        borderRadius: '10px',
+        fontSize: '0.9rem',
       },
     });
   };
-
-
-  const imageUrl = product.image_url || '/placeholder-image.jpg';
-
-
+  const imageUrl = product.image_url || '/placeholder.svg';
   const isOutOfStock = product.stock === 0;
   const isLowStock = product.stock <= 10 && product.stock > 0;
-
   return createPortal(
-    <div className={`modal-overlay ${isVisible ? 'active' : ''}`} onClick={handleClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className={`modal-overlay ${isVisible ? 'visible' : ''}`} onClick={handleClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={handleClose}>
-          <FiX size={24} />
+          <FiX />
         </button>
-
         <div className="modal-grid">
           <div className="modal-image">
             <img src={imageUrl} alt={product.name} />
           </div>
-
           <div className="modal-details">
             <h2>{product.name}</h2>
-            <div className="modal-price">€{product.price}</div>
-            
+            <p className="modal-price">€{product.price}</p>
             <div className="modal-meta">
               <div className="modal-meta-item">
                 <span className="modal-meta-label">Material</span>
@@ -74,21 +59,18 @@ export const ProductModal = ({ product, onClose }: Props) => {
                 <span className="modal-meta-value">{product.color || '—'}</span>
               </div>
             </div>
-
             <p className="modal-description">{product.description || 'No description available.'}</p>
-            
             <div className={`modal-stock ${isLowStock ? 'warning' : ''}`}>
-              {isLowStock && <FiAlertTriangle size={20} />}
-              {isOutOfStock ? 'Out of Stock' : `Stock: ${product.stock} available`}
-              {isLowStock && !isOutOfStock && ' - Almost out of stock!'}
+              {isLowStock && <FiAlertTriangle />}
+              {isOutOfStock ? 'Out of Stock' : `${product.stock} available`}
+              {isLowStock && !isOutOfStock && ' — Almost out!'}
             </div>
-
             <button
               className="modal-add-to-cart"
               onClick={handleAddToCart}
               disabled={isOutOfStock}
             >
-              {isOutOfStock ? 'OUT OF STOCK' : 'ADD TO CART +'}
+              {isOutOfStock ? 'OUT OF STOCK' : 'ADD TO CART'}
             </button>
           </div>
         </div>

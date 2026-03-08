@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
+
 .cart-container {
   max-width: 1000px;
   margin: auto;
@@ -15,8 +17,6 @@
   margin-top: 40px;
   text-align: right;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
 
 :root {
   --bg-dark: #0f1a17;

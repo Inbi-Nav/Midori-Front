@@ -1,21 +1,22 @@
 import "../../styles/shop-ghibli.css";
+import { MobileBottomNav } from "./MobileBottomNav";
 
 interface Props {
   sidebar: React.ReactNode;
   topbar: React.ReactNode;
   children: React.ReactNode;
 }
-
 export const ShopLayout = ({ sidebar, topbar, children }: Props) => {
   return (
     <div className="shop-container">
       <aside className="shop-sidebar">{sidebar}</aside>
-      <div className="shop-main">
+      <main className="shop-main">
         {topbar}
-        <main className="shop-content-wrapper">
+        <div className="shop-content">
           {children}
-        </main>
-      </div>
+        </div>
+      </main>
+      <MobileBottomNav />
     </div>
   );
 };
